@@ -220,18 +220,18 @@ def smart_resolve_input(input_str):
     return None
 
 # ==========================================
-# 🌐 STREAMLIT UI DESIGN (RGB DISCO THEME)
+# 🌐 STREAMLIT UI DESIGN (RGB DISCO & AQUARIUM THEME)
 # ==========================================
 st.set_page_config(page_title="LUCKY GODFATHER | Command Center", page_icon="☠️", layout="centered")
 
-# Custom Hacker RGB CSS Styling
+# Custom Hacker RGB & Fish Animation CSS
 st.markdown(
     """
     <style>
     /* Dark Terminal Background */
     .stApp {
         background-color: #050505;
-        background-image: radial-gradient(circle, #0a0a0a 0%, #000000 90%);
+        background-image: radial-gradient(circle, #0a0a1a 0%, #000000 90%);
         color: #ffffff;
         font-family: 'Courier New', Courier, monospace;
     }
@@ -249,6 +249,7 @@ st.markdown(
     .disco-lucky {
         animation: discoText 1.5s infinite linear;
         font-weight: 900;
+        display: inline-block;
     }
     
     /* 🌈 RGB KEYFRAME ANIMATION FOR BORDERS (Gaming Keyboard Effect) */
@@ -270,6 +271,8 @@ st.markdown(
         text-align: center;
         font-weight: bold;
         animation: rgbBorder 3s infinite linear;
+        z-index: 10;
+        position: relative;
     }
     .stTextInput input:focus {
         outline: none !important;
@@ -289,6 +292,8 @@ st.markdown(
         width: 100%;
         padding: 15px !important;
         animation: rgbBorder 2.5s infinite linear;
+        z-index: 10;
+        position: relative;
     }
     .stButton>button:hover {
         background-color: rgba(255,255,255,0.1) !important;
@@ -300,6 +305,34 @@ st.markdown(
         background-color: rgba(10, 10, 10, 0.8) !important;
         border: 1px solid #ffffff !important;
         color: #ffffff !important;
+        z-index: 10;
+        position: relative;
+    }
+    
+    /* 🐟 FISH ANIMATION CSS */
+    .fish-container {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100vw; height: 100vh;
+        pointer-events: none;
+        z-index: 0;
+        overflow: hidden;
+    }
+    .fish {
+        position: absolute;
+        font-size: 25px; /* Choti choti machliyan */
+        right: -10%;
+        animation-name: swim;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        opacity: 0.7;
+    }
+    @keyframes swim {
+        0% { transform: translateX(50px) translateY(0px); }
+        25% { transform: translateX(-25vw) translateY(-20px); }
+        50% { transform: translateX(-50vw) translateY(15px); }
+        75% { transform: translateX(-75vw) translateY(-10px); }
+        100% { transform: translateX(-110vw) translateY(0px); }
     }
     
     /* Hide Streamlit Branding */
@@ -307,18 +340,35 @@ st.markdown(
     footer {visibility: hidden;}
     header {visibility: hidden;}
     </style>
+    
+    <!-- 🐟 FISH HTML OVERLAY (With Different Colors & Speeds) -->
+    <div class="fish-container">
+        <div class="fish" style="top: 10%; animation-duration: 15s; filter: hue-rotate(0deg);">🐟</div>
+        <div class="fish" style="top: 25%; animation-duration: 20s; filter: hue-rotate(90deg);">🐟</div>
+        <div class="fish" style="top: 40%; animation-duration: 12s; filter: hue-rotate(180deg);">🐟</div>
+        <div class="fish" style="top: 55%; animation-duration: 18s; filter: hue-rotate(270deg);">🐟</div>
+        <div class="fish" style="top: 70%; animation-duration: 25s; filter: hue-rotate(45deg);">🐟</div>
+        <div class="fish" style="top: 85%; animation-duration: 14s; filter: hue-rotate(135deg);">🐟</div>
+        <div class="fish" style="top: 15%; animation-duration: 22s; filter: hue-rotate(210deg); animation-delay: -5s;">🐟</div>
+        <div class="fish" style="top: 60%; animation-duration: 17s; filter: hue-rotate(300deg); animation-delay: -10s;">🐟</div>
+        <div class="fish" style="top: 30%; animation-duration: 19s; filter: hue-rotate(60deg); animation-delay: -8s;">🐟</div>
+        <div class="fish" style="top: 80%; animation-duration: 16s; filter: hue-rotate(330deg); animation-delay: -12s;">🐟</div>
+        <div class="fish" style="top: 45%; animation-duration: 21s; filter: hue-rotate(150deg); animation-delay: -15s;">🐟</div>
+        <div class="fish" style="top: 5%; animation-duration: 13s; filter: hue-rotate(250deg); animation-delay: -2s;">🐟</div>
+        <div class="fish" style="top: 90%; animation-duration: 18s; filter: hue-rotate(350deg); animation-delay: -7s;">🐟</div>
+    </div>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown("<h1 style='text-align: center;'>☠️ <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span> 🌎 𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧 🖥️</h1>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; font-size: 1.2rem; color: #ffffff;'>SYS.ADMIN: ROOT | <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span></p>", unsafe_allow_html=True)
-st.markdown("<p style='text-align: center; color: #dddddd;'>Is panel se aap bot network ko kisi bhi target room me bhej sakte hain.</p>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; position: relative; z-index: 10;'>☠️<span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span>🌎<span class='disco-lucky'>𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧</span>🖥️</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 1.2rem; position: relative; z-index: 10;'>SYS.ADMIN: ROOT | <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span></p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #88ff88; position: relative; z-index: 10;'>Is panel se aap bot network ko kisi bhi target room me bhej sakte hain.</p>", unsafe_allow_html=True)
 
-st.markdown("---")
+st.markdown("<hr style='position: relative; z-index: 10;'>", unsafe_allow_html=True)
 
 # User input with terminal prefix
-user_input = st.text_input("ENTER TARGET (Room Link/):", placeholder="https://api.olaparty.com/d/...", label_visibility="collapsed")
+user_input = st.text_input(" ENTER TARGET (Room Link/):", placeholder="https://api.olaparty.com/d/...", label_visibility="collapsed")
 
 st.markdown("<br>", unsafe_allow_html=True)
 
@@ -349,9 +399,9 @@ if st.button("🚀 Click✅"):
                     st.error(f"❌ SERVER UNREACHABLE. TARGET OFFLINE.")
             
             st.balloons()
-            st.markdown("<h3 style='text-align: center;'>🎉 <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span> 🌎 𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧 🖥️ ZINDABAD 🙋🏻‍♂️</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='text-align: center; position: relative; z-index: 10;'>🎉 <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span> 🌎 <span class='disco-lucky'>𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧</span> 🖥️ ZINDABAD 🙋🏻‍♂️</h3>", unsafe_allow_html=True)
         else:
             st.error("❌ FATAL ERROR: INVALID TARGET OR USER OFFLINE.")
 
-st.markdown("---")
-st.markdown("<p style='text-align: center; font-size: 1rem; color: #ffffff; font-weight: bold;'>// DEVELOPED BY <span class='disco-lucky'>LUCKY</span> GODFATHER // </p>", unsafe_allow_html=True)
+st.markdown("<hr style='position: relative; z-index: 10;'>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 0.8rem; color: #88ff88; position: relative; z-index: 10;'>// DEVELOPED BY <span class='disco-lucky'>LUCKY</span> <span class='disco-lucky'>GODFATHER</span> // </p>", unsafe_allow_html=True)

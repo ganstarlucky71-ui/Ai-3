@@ -220,27 +220,119 @@ def smart_resolve_input(input_str):
     return None
 
 # ==========================================
-# 🌐 STREAMLIT UI DESIGN
+# 🌐 STREAMLIT UI DESIGN (RGB DISCO THEME)
 # ==========================================
-st.set_page_config(page_title="Bot Controller", page_icon="🤖")
+st.set_page_config(page_title="LUCKY GODFATHER | Command Center", page_icon="☠️", layout="centered")
 
-st.title("🤖 Master Bot Controller")
-st.markdown("Is website se aap apne bots ko kisi bhi room me bhej sakte hain.")
+# Custom Hacker RGB CSS Styling
+st.markdown(
+    """
+    <style>
+    /* Dark Terminal Background */
+    .stApp {
+        background-color: #050505;
+        background-image: radial-gradient(circle, #0a0a0a 0%, #000000 90%);
+        color: #ffffff;
+        font-family: 'Courier New', Courier, monospace;
+    }
+    
+    /* 🌈 RGB KEYFRAME ANIMATION FOR TEXT (Red, Yellow, Green, Blue, Pink) */
+    @keyframes discoText {
+        0% { color: #ff0040; text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040; }
+        20% { color: #ffff00; text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00; }
+        40% { color: #00ff00; text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00; }
+        60% { color: #0088ff; text-shadow: 0 0 10px #0088ff, 0 0 20px #0088ff; }
+        80% { color: #ff00ff; text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff; }
+        100% { color: #ff0040; text-shadow: 0 0 10px #ff0040, 0 0 20px #ff0040; }
+    }
+    
+    .disco-lucky {
+        animation: discoText 1.5s infinite linear;
+        font-weight: 900;
+    }
+    
+    /* 🌈 RGB KEYFRAME ANIMATION FOR BORDERS (Gaming Keyboard Effect) */
+    @keyframes rgbBorder {
+        0% { border-color: #ff0040; box-shadow: 0 0 15px #ff0040; }
+        20% { border-color: #ffff00; box-shadow: 0 0 15px #ffff00; }
+        40% { border-color: #00ff00; box-shadow: 0 0 15px #00ff00; }
+        60% { border-color: #0088ff; box-shadow: 0 0 15px #0088ff; }
+        80% { border-color: #ff00ff; box-shadow: 0 0 15px #ff00ff; }
+        100% { border-color: #ff0040; box-shadow: 0 0 15px #ff0040; }
+    }
 
-# User se input lene ke liye text box
-user_input = st.text_input("👉 Room Share Link, CID, VID ya UID paste karein:", placeholder="https://api.olaparty.com/d/....")
+    /* Input Box RGB Hacker Style */
+    .stTextInput input {
+        background-color: rgba(0, 0, 0, 0.9) !important;
+        color: #ffffff !important;
+        border: 2px solid transparent !important;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: bold;
+        animation: rgbBorder 3s infinite linear;
+    }
+    .stTextInput input:focus {
+        outline: none !important;
+        background-color: #111111 !important;
+    }
+    
+    /* Action Button RGB Gaming Style */
+    .stButton>button {
+        background-color: #111111 !important;
+        color: #ffffff !important;
+        border: 2px solid transparent !important;
+        border-radius: 8px;
+        transition: all 0.3s ease-in-out;
+        text-transform: uppercase;
+        font-weight: bold;
+        letter-spacing: 2px;
+        width: 100%;
+        padding: 15px !important;
+        animation: rgbBorder 2.5s infinite linear;
+    }
+    .stButton>button:hover {
+        background-color: rgba(255,255,255,0.1) !important;
+        transform: scale(1.02);
+    }
+    
+    /* Status Messages */
+    .stAlert {
+        background-color: rgba(10, 10, 10, 0.8) !important;
+        border: 1px solid #ffffff !important;
+        color: #ffffff !important;
+    }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown("<h1 style='text-align: center;'>☠️ <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span> 🌎 𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧 🖥️</h1>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 1.2rem; color: #ffffff;'>SYS.ADMIN: ROOT | <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span></p>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; color: #dddddd;'>Is panel se aap bot network ko kisi bhi target room me bhej sakte hain.</p>", unsafe_allow_html=True)
+
+st.markdown("---")
+
+# User input with terminal prefix
+user_input = st.text_input("ENTER TARGET (Room Link/):", placeholder="https://api.olaparty.com/d/...", label_visibility="collapsed")
+
+st.markdown("<br>", unsafe_allow_html=True)
 
 # Action Button
-if st.button("🚀 Bots Ko Room Me Bhejo"):
+if st.button("🚀 Click✅"):
     if not user_input:
-        st.warning("⚠️ Pehle koi Link ya ID box me daaliye!")
+        st.warning("⚠️ ERROR: NO TARGET SPECIFIED. PLEASE ENTER LINK/ID.")
     else:
-        with st.spinner("⏳ Link check kar raha hoon... Room dhundha jaa raha hai..."):
+        with st.spinner("⏳ TRACING TARGET... RESOLVING ROOM ID..."):
             target_cid = smart_resolve_input(user_input)
 
         if target_cid:
-            st.success(f"✅ Room Mil Gaya! CID: {target_cid}")
-            st.info("🚀 Sabhi servers ko nayi room command bheji jaa rahi hai...")
+            st.success(f"✅ LUCKY🌎BOSS ke Hukum se Ai gaya")
+            st.info("🚀 Successful.")
             
             # Send requests to render bots
             for url in RENDER_URLS:
@@ -250,13 +342,16 @@ if st.button("🚀 Bots Ko Room Me Bhejo"):
                     res = requests.get(api_link, timeout=15, verify=False)
                     
                     if res.status_code == 200:
-                        st.success(f"✅ {url} Server par command successfully chali gayi!")
+                        st.success(f"✅ SERVER HACKED SUCCESSFUL")
                     else:
-                        st.error(f"❌ {url} Server ne error diya. Code: {res.status_code}")
+                        st.error(f"❌ SERVER REJECTED COMMAND. Code: {res.status_code}")
                 except Exception as e:
-                    st.error(f"❌ {url} par signal bhejne me fail. Server shayad sleep me hai.")
+                    st.error(f"❌ SERVER UNREACHABLE. TARGET OFFLINE.")
             
             st.balloons()
-            st.markdown("### 🎉 Mission Complete!")
+            st.markdown("<h3 style='text-align: center;'>🎉 <span class='disco-lucky'>𝐋𝐔𝐂𝐊𝐘</span> 🌎 𝙂𝙤𝙙𝙛𝙖𝙩𝙝𝙚𝙧 🖥️ ZINDABAD 🙋🏻‍♂️</h3>", unsafe_allow_html=True)
         else:
-            st.error("❌ Invalid Link/ID ya phir User Offline hai. Koi room nahi mila.")
+            st.error("❌ FATAL ERROR: INVALID TARGET OR USER OFFLINE.")
+
+st.markdown("---")
+st.markdown("<p style='text-align: center; font-size: 1rem; color: #ffffff; font-weight: bold;'>// DEVELOPED BY <span class='disco-lucky'>LUCKY</span> GODFATHER // </p>", unsafe_allow_html=True)

@@ -7,6 +7,8 @@ import re
 import requests
 import binascii
 import urllib3
+import base64
+import os
 
 # InsecureRequestWarning chupane ke liye
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
@@ -219,38 +221,71 @@ def smart_resolve_input(input_str):
         
     return None
 
+def get_base64_of_bin_file(bin_file):
+    try:
+        with open(bin_file, 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data).decode()
+    except:
+        return None
+
 # ==========================================
-# 🌐 STREAMLIT UI DESIGN (HACKER THEME)
+# 🌐 STREAMLIT UI DESIGN (IMAGE BACKGROUND & HACKER THEME)
 # ==========================================
 st.set_page_config(page_title="LUCKY GODFATHER | Command Center", page_icon="☠️", layout="centered")
 
-# Custom Hacker CSS Styling
-st.markdown(
+# Read the uploaded eagle image
+bg_image_file = "Screenshot_2026-08-05-02-06-12-306_com.live.partylk-edit.jpg" 
+img_base64 = get_base64_of_bin_file(bg_image_file)
+
+# Dynamic CSS generation based on image availability
+if img_base64:
+    background_css = f"""
+    .stApp {{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.85)), url("data:image/jpeg;base64,{img_base64}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }}
     """
-    <style>
-    /* Dark Terminal Background */
-    .stApp {
+else:
+    background_css = """
+    .stApp {{
         background-color: #050505;
         background-image: radial-gradient(circle, #0a1f0a 0%, #000000 90%);
+    }}
+    """
+
+st.markdown(
+    f"""
+    <style>
+    /* Apply Background */
+    {background_css}
+    
+    .stApp {{
         color: #00ff00;
         font-family: 'Courier New', Courier, monospace;
-    }
+    }}
     
     /* Glowing Headers */
-    h1, h2, h3 {
+    h1, h2, h3 {{
         color: #00ff00 !important;
         text-shadow: 0 0 10px #00ff00, 0 0 20px #005500;
         text-align: center;
         font-family: 'Courier New', Courier, monospace;
-    }
+        position: relative;
+        z-index: 10;
+    }}
     
     /* Terminal Text */
-    p, span, div {
+    p, span, div {{
         font-family: 'Courier New', Courier, monospace !important;
-    }
+        position: relative;
+        z-index: 10;
+    }}
     
     /* Input Box Hacker Style */
-    .stTextInput input {
+    .stTextInput input {{
         background-color: rgba(0, 20, 0, 0.8) !important;
         color: #00ff00 !important;
         border: 1px solid #00ff00 !important;
@@ -258,15 +293,15 @@ st.markdown(
         border-radius: 4px;
         text-align: center;
         font-weight: bold;
-    }
-    .stTextInput input:focus {
+    }}
+    .stTextInput input:focus {{
         box-shadow: 0 0 20px rgba(0, 255, 0, 0.7) !important;
         border: 1px solid #00ff00 !important;
-    }
+    }}
     
     /* Action Button Hacker Style */
-    .stButton>button {
-        background-color: transparent !important;
+    .stButton>button {{
+        background-color: rgba(0, 20, 0, 0.7) !important;
         color: #00ff00 !important;
         border: 2px solid #00ff00 !important;
         border-radius: 8px;
@@ -277,25 +312,25 @@ st.markdown(
         letter-spacing: 2px;
         width: 100%;
         padding: 15px !important;
-    }
-    .stButton>button:hover {
+    }}
+    .stButton>button:hover {{
         background-color: #00ff00 !important;
         color: #000000 !important;
         box-shadow: 0 0 30px #00ff00, 0 0 50px #00aa00;
         transform: scale(1.02);
-    }
+    }}
     
     /* Status Messages */
-    .stAlert {
+    .stAlert {{
         background-color: rgba(0, 20, 0, 0.8) !important;
         border: 1px solid #00ff00 !important;
         color: #00ff00 !important;
-    }
+    }}
     
     /* Hide Streamlit Branding */
-    #MainMenu {visibility: hidden;}
-    footer {visibility: hidden;}
-    header {visibility: hidden;}
+    #MainMenu {{visibility: hidden;}}
+    footer {{visibility: hidden;}}
+    header {{visibility: hidden;}}
     </style>
     """,
     unsafe_allow_html=True
